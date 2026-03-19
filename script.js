@@ -333,7 +333,7 @@ function parseJSON(raw) {
 /* ══════════════════════════════════════
    GROQ API
 ══════════════════════════════════════ */
-const GROQ_KEY = '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';
+const GROQ_KEY = '';
 
 async function callAPI(systemPrompt, userPrompt) {
  const resp = await fetch('/api/proxy', {
