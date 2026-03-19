@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CareerSaathi — AI Career &amp; Entrepreneurship Guidance</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ═══════════════════════════════
+     LANDING PAGE
+═══════════════════════════════ -->
+<div id="landing">
+  <header class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-badge"><span class="pulse"></span>AI-Powered · Unique for Every Profile</div>
+    <h1>CareerSaathi<br><span class="grad">Career &amp; Entrepreneurship</span> Guidance</h1>
+    <p class="hero-sub">Your personal AI guide for careers, business ideas, and government schemes — built fresh for your exact profile every time.</p>
+    <div class="hero-feats">
+      <div class="feat-pill"><span class="dot"></span>Age-matched Careers</div>
+      <div class="feat-pill"><span class="dot"></span>Business Ideas</div>
+      <div class="feat-pill"><span class="dot"></span>Govt Schemes</div>
+      <div class="feat-pill"><span class="dot"></span>Break Barriers</div>
+    </div>
+  </header>
+
+  <div class="form-strip">
+    <div class="form-card">
+      <div class="form-title">✦ Your Profile</div>
+      <div class="form-sub">Share your details — the AI builds guidance that fits <em>you specifically</em>, not a generic list.</div>
+
+      <div class="form-body">
+        <!-- LEFT: fields -->
+        <div class="form-left">
+          <div class="fields-grid">
+            <div class="field" id="f-age">
+              <label>🎂 Age</label>
+              <input type="number" id="inp-age" min="18" max="60" placeholder="e.g. 25"/>
+              <div class="field-err">Age 18–60</div>
+            </div>
+            <div class="field" id="f-loc">
+              <label>📍 City</label>
+              <input type="text" id="inp-loc" list="city-list" placeholder="e.g. Hyderabad"/>
+              <datalist id="city-list">
+                <option value="Bangalore"><option value="Mumbai"><option value="Delhi">
+                <option value="Hyderabad"><option value="Chennai"><option value="Kolkata">
+                <option value="Vijayawada"><option value="Jaipur"><option value="Coimbatore">
+                <option value="Surat"><option value="Varanasi"><option value="Rural India">
+                <option value="Small Town"><option value="Remote / Online">
+              </datalist>
+              <div class="field-err">Enter your city</div>
+            </div>
+            <div class="field" id="f-mar">
+              <label>💍 Marital Status</label>
+              <select id="inp-mar">
+                <option value="">— Select —</option>
+                <option>Single</option><option>Married</option>
+                <option>Divorced</option><option>Widowed</option>
+              </select>
+              <div class="field-err">Please select</div>
+            </div>
+            <div class="field">
+              <label>🎓 Education</label>
+              <select id="inp-edu">
+                <option value="">— Select —</option>
+                <option>10th Pass</option><option>12th Pass</option>
+                <option>Diploma / ITI</option><option>Bachelor's Degree</option>
+                <option>Master's Degree</option><option>PhD</option>
+              </select>
+            </div>
+          </div>
+          <div class="btn-wrap">
+            <button class="btn-gen" id="btnGen" onclick="generate()">✦ Generate My Personalised Guidance</button>
+            <div class="err-box" id="errBox"></div>
+          </div>
+        </div>
+
+        <!-- RIGHT: interests -->
+        <div class="form-right">
+          <label class="int-label">✦ Areas of Interest <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:.8rem">(select all that apply)</span></label>
+          <div class="int-chips">
+            <label class="int-chip"><input type="checkbox" value="Technology and Coding"/><span>💻 Tech &amp; Coding</span></label>
+            <label class="int-chip"><input type="checkbox" value="Healthcare and Wellness"/><span>🏥 Healthcare</span></label>
+            <label class="int-chip"><input type="checkbox" value="Business and Finance"/><span>💰 Business &amp; Finance</span></label>
+            <label class="int-chip"><input type="checkbox" value="Creative Arts and Design"/><span>🎨 Creative &amp; Design</span></label>
+            <label class="int-chip"><input type="checkbox" value="Education and Teaching"/><span>📚 Teaching</span></label>
+            <label class="int-chip"><input type="checkbox" value="Agriculture and Environment"/><span>🌿 Agriculture</span></label>
+            <label class="int-chip"><input type="checkbox" value="Social Work and NGO"/><span>🤝 Social Work</span></label>
+            <label class="int-chip"><input type="checkbox" value="Fashion and Textiles"/><span>👗 Fashion</span></label>
+            <label class="int-chip"><input type="checkbox" value="Food and Catering"/><span>🍱 Food &amp; Catering</span></label>
+            <label class="int-chip"><input type="checkbox" value="Media and Content Creation"/><span>📱 Media &amp; Content</span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>Built with ♥ for <strong>Women Across India</strong> · CareerSaathi · <strong>Guided By Nancy Anurag(M.Tech)</strong></footer>
+</div>
+
+<!-- LOADING OVERLAY -->
+<div class="loading-wrap" id="loadWrap">
+  <div class="load-card">
+    <div class="spinner-ring"></div>
+    <p class="load-title">Building your guidance…</p>
+    <p class="load-sub">Crafting a plan unique to your profile</p>
+    <ul class="load-steps" id="loadSteps">
+      <li id="ls1"><span class="sico">⏳</span> Analysing your profile</li>
+      <li id="ls2"><span class="sico">⏳</span> Finding matching careers</li>
+      <li id="ls3"><span class="sico">⏳</span> Identifying business opportunities</li>
+      <li id="ls4"><span class="sico">⏳</span> Mapping government schemes</li>
+      <li id="ls5"><span class="sico">⏳</span> Building your barrier-break roadmap</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     RESULTS PAGE
+═══════════════════════════════ -->
+<div id="results-page">
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-brand">Career<span>Saathi</span></div>
+    <div class="topbar-profile">
+      <span class="tag" id="profileTag">—</span>
+    </div>
+    <button class="btn-back" onclick="goBack()">← New Search</button>
+  </div>
+
+  <div class="workspace">
+    <!-- SIDEBAR NAV -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sb-summary" id="sbSummary"></div>
+      <div class="sb-stats" id="sbStats"></div>
+      <div class="sb-section">Navigation</div>
+      <div class="nav-item active" onclick="switchTab('careers',this)" data-tab="careers">
+        <span class="ni">💼</span> Careers <span class="badge" id="nb-careers"></span>
+      </div>
+      <div class="nav-item" onclick="switchTab('business',this)" data-tab="business">
+        <span class="ni">🚀</span> Businesses <span class="badge" id="nb-business"></span>
+      </div>
+      <div class="nav-item" onclick="switchTab('schemes',this)" data-tab="schemes">
+        <span class="ni">🏛</span> Govt Schemes <span class="badge" id="nb-schemes"></span>
+      </div>
+      <div class="nav-item" onclick="switchTab('network',this)" data-tab="network">
+        <span class="ni">🌐</span> Networking
+      </div>
+      <div class="nav-item" onclick="switchTab('barrier',this)" data-tab="barrier">
+        <span class="ni">⚡</span> Break Barriers
+      </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="content-panel" id="contentPanel">
+      <div class="tab-panel active" id="panel-careers">
+        <div class="panel-title">💼 Careers</div>
+        <div class="panel-sub">Roles matched to your interests, age, education and location.</div>
+        <div class="cards-grid" id="careersGrid"></div>
+      </div>
+      <div class="tab-panel" id="panel-business">
+        <div class="panel-title">🚀 Business Ideas</div>
+        <div class="panel-sub">Entrepreneurship opportunities suited to your city and lifestyle.</div>
+        <div class="cards-grid" id="bizGrid"></div>
+      </div>
+      <div class="tab-panel" id="panel-schemes">
+        <div class="panel-title">🏛 Government Schemes</div>
+        <div class="panel-sub">Real schemes you can apply to right now.</div>
+        <div class="schemes-grid" id="schemesGrid"></div>
+      </div>
+      <div class="tab-panel" id="panel-network">
+        <div class="panel-title">🌐 Networking</div>
+        <div class="panel-sub">Communities, mentors, and portals to grow your career.</div>
+        <div id="netContent"></div>
+      </div>
+      <div class="tab-panel" id="panel-barrier">
+        <div id="barrierContent"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     CHATBOT WIDGET
+═══════════════════════════════ -->
+<button class="chat-fab" id="chatFab" onclick="toggleChat()" title="Ask CareerSaathi AI">
+  <span class="fab-icon">✨</span>
+  <span class="chat-unread" id="chatUnread">1</span>
+</button>
+
+<div class="chat-window" id="chatWindow">
+  <div class="chat-head">
+    <div class="chat-avatar">✨</div>
+    <div class="chat-head-info">
+      <div class="chat-head-name">CareerSaathi Assistant</div>
+      <div class="chat-head-status">Online · Powered by Groq</div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-msgs" id="chatMsgs"></div>
+  <div class="chat-input-wrap">
+    <textarea class="chat-input" id="chatInput" placeholder="Ask me anything…" rows="1"
+      onkeydown="handleChatKey(event)" oninput="autoResize(this)"></textarea>
+    <button class="chat-send" id="chatSend" onclick="sendChat()">➤</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
